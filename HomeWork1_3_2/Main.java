@@ -23,7 +23,7 @@ public class Main {
 
         zipFiles("C://Games//savegames//save_zip.zip", listUrl);
 
-
+        deleteFile(listUrl);
     }
 
     public static void saveGame(String url, GameProgress gameProgress) {
@@ -48,12 +48,18 @@ public class Main {
                 fis.read(buffer);
                 zout.write(buffer);
                 zout.closeEntry();
-                new File(s).delete();
+                fis.close();
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    public static void deleteFile(List<String> listUrl){
+        for (String s   : listUrl){
+            new File(s).delete();
+        }
     }
 
 }
